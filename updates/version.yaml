@@ -1,0 +1,7 @@
+1.0.1: First version of payment
+1.0.2:
+    - Add Unique Number to Invoices Table
+    - add_unique_number_to_invoices_table.php
+1.0.3:
+    - Create payment confirmations table
+    - create_payment_confirmations_table.php

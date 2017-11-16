@@ -1,0 +1,37 @@
+# ===================================
+#  Gateway Field Definitions
+# ===================================
+
+fields:
+
+    payment_instructions:
+        label: Payment instructions
+        type: richeditor
+        tab: Configuration
+
+    mail_template_code:
+        label: Email Template
+        type: dropdown
+        span: auto
+        required: true
+        default: 'marthatilaar.payment::mail.banktransfer_instructions'
+        tab: Configuration
+
+    # bank_accounts:
+    #     label: Bank Accounts
+    #     type: repeater
+    #     tab: Configuration
+    #     form:
+    #         fields:
+    #             name:
+    #                 label: Name
+    #                 type: text
+    #                 span: auto
+    #             description:
+    #                 label: Description
+    #                 type: text
+    #                 span: auto
+    #             account_no:
+    #                 label: Account No.
+    #                 type: text
+    #                 span: auto

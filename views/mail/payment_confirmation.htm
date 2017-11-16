@@ -1,0 +1,40 @@
+subject = "Konfirmasi Pembayaran Anda [#{{ order.order_no }}]"
+==
+
+==
+<p>Konfirmasi pembayaran Anda telah kami terima. Kami memerlukan waktu paling lambat 1x24 jam untuk memverifasi pembayaran Anda. Jika Anda mengalmi kendala silakan hubungi (021) 4603717.
+
+<table class="table-information" style="width:400px;">
+	<tbody>
+		<tr>
+			<td>No Order</td>
+			<td>:</td>
+			<td>{{ paymentConfirmation.order_no }}</td>
+		</tr>
+		<tr>
+			<td>Transfer Ke</td>
+			<td>:</td>
+			<td>{{ paymentConfirmation.destination_account }}</td>
+		</tr>
+		<tr>
+			<td>Jumlah Bayar</td>
+			<td>:</td>
+			<td>{{ paymentConfirmation.transfer_amount }}</td>
+		</tr>
+		<tr>
+			<td>Dari Bank</td>
+			<td>:</td>
+			<td>{{ paymentConfirmation.bank_name }}</td>
+		</tr>
+		<tr>
+			<td>Nama Pemilik Rekening</td>
+			<td>:</td>
+			<td>{{ paymentConfirmation.account_owner }}</td>
+		</tr>
+		<tr>
+			<td>Tanggal Pengiriman</td>
+			<td>:</td>
+			<td>{{ paymentConfirmation.transfer_date|date('d-m-Y') }}</td>
+		</tr>
+	</tbody>
+</table>

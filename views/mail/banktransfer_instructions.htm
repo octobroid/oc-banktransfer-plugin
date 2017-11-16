@@ -1,0 +1,26 @@
+subject = "Payment Instructions"
+==
+
+==
+<h1>Payment Instructions</h1>
+
+<table class="table table-striped">
+	<tbody>
+		<tr>
+			<td width="200px">Kode Unik</td>
+			<td><strong>{{ invoice.unique_number }}</strong></td>
+		</tr>
+		<tr>
+			<td width="200px">Jumlah yang harus Anda transfer</td>
+			<td><span class="lead text-danger"><strong>{{ (invoice.total+invoice.unique_number)|currency({format: 'short'}) }}</strong></span></td>
+		</tr>
+		<tr>
+			<td width="200px">Batas waktu transfer</td>
+			<td><strong>{{ invoice.due_at|date('d M Y, H:i') }}</strong></td>
+		</tr>
+	</tbody>
+</table>
+
+<hr>
+
+{{ host.payment_instructions|raw }}
