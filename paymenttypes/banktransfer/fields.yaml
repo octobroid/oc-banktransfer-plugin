@@ -14,7 +14,7 @@ fields:
         type: dropdown
         span: auto
         required: true
-        default: 'marthatilaar.payment::mail.banktransfer_instructions'
+        default: 'octobro.banktransfer::mail.banktransfer_instructions'
         tab: Configuration
 
     # bank_accounts:

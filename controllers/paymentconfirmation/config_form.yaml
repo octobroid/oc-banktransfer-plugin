@@ -6,25 +6,25 @@
 name: Payment Confirmation
 
 # Model Form Field configuration
-form: $/marthatilaar/payment/models/paymentconfirmation/fields.yaml
+form: $/octobro/banktransfer/models/paymentconfirmation/fields.yaml
 
 # Model Class name
 modelClass: Octobro\BankTransfer\Models\PaymentConfirmation
 
 # Default redirect location
-defaultRedirect: marthatilaar/payment/paymentconfirmation
+defaultRedirect: octobro/banktransfer/paymentconfirmation
 
 # Create page
 create:
     title: Create Payment Confirmation
-    redirect: marthatilaar/payment/paymentconfirmation/update/:id
-    redirectClose: marthatilaar/payment/paymentconfirmation
+    redirect: octobro/banktransfer/paymentconfirmation/update/:id
+    redirectClose: octobro/banktransfer/paymentconfirmation
 
 # Update page
 update:
     title: Edit Payment Confirmation
-    redirect: marthatilaar/payment/paymentconfirmation
-    redirectClose: marthatilaar/payment/paymentconfirmation
+    redirect: octobro/banktransfer/paymentconfirmation
+    redirectClose: octobro/banktransfer/paymentconfirmation
 
 # Preview page
 preview:
