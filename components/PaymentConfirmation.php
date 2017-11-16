@@ -72,7 +72,7 @@ class PaymentConfirmation extends ComponentBase
             } else {
                 if($confirm = Confirm::create($data)) {
                     $paymentConfirmation = $order->payment_confirmation()->orderBy('created_at', 'DESC')->first();
-                    Mail::send('marthatilaar.payment::mail.payment_confirmation', compact('order', 'paymentConfirmation'), function($message) use($order) {
+                    Mail::send('octobro.banktransfer::mail.payment_confirmation', compact('order', 'paymentConfirmation'), function($message) use($order) {
                         $message->to($order->email, $order->name);
                         $message->subject('Konfirmasi Pembayaran anda [#'.$order->order_no.']');
                     });
