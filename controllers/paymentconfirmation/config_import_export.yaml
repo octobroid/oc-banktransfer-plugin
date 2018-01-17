@@ -1,0 +1,8 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+export:
+    title: Export Payment Confirmations
+    modelClass: Octobro\BankTransfer\Models\ExportPaymentConfirmation
+    list: $/octobro/banktransfer/models/exportpaymentconfirmation/columns.yaml
+    fileName: 'Payment Confirmations.csv'
