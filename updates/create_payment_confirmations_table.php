@@ -11,7 +11,7 @@ class CreatePaymentConfirmationsTable extends Migration
         Schema::create('octobro_banktransfer_payment_confirmations', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('order_no');
+            $table->string('order_no')->index();
             $table->date('transfer_date')->nullable();
             $table->string('account_owner')->nullable();
             $table->string('bank_name')->nullable();
