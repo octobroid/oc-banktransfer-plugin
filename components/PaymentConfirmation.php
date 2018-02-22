@@ -7,7 +7,6 @@ use Mail;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use Octobro\BankTransfer\Models\PaymentConfirmation as Confirm;
-use Octommerce\Octommerce\Models\Order;
 
 class PaymentConfirmation extends ComponentBase
 {
@@ -58,14 +57,14 @@ class PaymentConfirmation extends ComponentBase
 
         try{
 
-            $order = Order::whereOrderNo($data['order_no'])->first();
+            $order = $this->getOrderModel();
 
             if(!$order) {
                 throw new \ApplicationException("Order doesn't exist");
             } else if(Confirm::whereOrderNo($data['order_no'])->exists()) {
                 throw new \ApplicationException("You have confirmed your payment before, we will tell you if your payment has been confirmed.");
                 // \Log::info(Confirm::whereOrderNo($data['order_no'])->exists());
-            } else if($order->status_code != "waiting") {
+            } else if($order->isPaid()) {
                 throw new \ApplicationException("Your order has been paid");
             } else if($order->invoice->payment_method->name != "Bank Transfer") {
                 throw new \ApplicationException("Your order didn't use bank transfer method");
@@ -85,5 +84,10 @@ class PaymentConfirmation extends ComponentBase
         } catch(Exception $e) {
             throw new \ApplicationException("Your order is not valid");
         }
+    }
+
+    protected function getOrderModel()
+    {
+        return (new Confirm)->order()->getRelated()->findOrder(post('order_no'));
     }
 }
