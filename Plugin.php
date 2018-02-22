@@ -4,15 +4,12 @@ use Backend;
 use System\Classes\PluginBase;
 use Responsiv\Pay\Models\Invoice;
 use Responsiv\Pay\Models\PaymentMethod;
-use Octommerce\Octommerce\Models\Order;
 
 /**
  * payment Plugin Information File
  */
 class Plugin extends PluginBase
 {
-    public $require = ['Octommerce.Octommerce'];
-
     /**
      * Returns information about this plugin.
      *
@@ -46,25 +43,6 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-        \Event::listen('backend.menu.extendItems', function($manager) {
-            $manager->addSideMenuItems('Octommerce.Octommerce', 'commerce', [
-                'paymentconfirmation' => [
-                    'label'       => 'Payment Confirmations',
-                    'url'         => Backend::url('octobro/banktransfer/paymentconfirmation'),
-                    'icon'        => 'icon-check',
-                    'permissions' => ['octobro.banktransfer.*'],
-                    'order'       => 500,
-                ]
-            ]);
-        });
-
-        Order::extend(function($model) {
-            $model->belongsTo['payment_confirmation'] = [
-                'Octobro\BankTransfer\Models\PaymentConfirmation',
-                'key'      => 'order_no',
-                'otherKey' => 'order_no'
-            ];
-        });
     }
 
     /**
