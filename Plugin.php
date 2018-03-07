@@ -68,8 +68,10 @@ class Plugin extends PluginBase
         });
 
         User::extend(function($model) {
-            $model->addDynamicMethod('getWaitingOrders', function() use ($model) {
-                return $model->orders()->whereStatusCode('waiting')->get();
+            $model->addDynamicMethod('getUnconfirmedOrders', function() use ($model) {
+                return $model->orders()
+                    ->whereStatusCode('waiting')
+                    ->whereDoesntHave('payment_confirmation')->get();
             });
         });
     }
