@@ -1,6 +1,7 @@
 <?php namespace Octobro\BankTransfer;
 
 use Backend;
+use RainLab\User\Models\User;
 use System\Classes\PluginBase;
 use Responsiv\Pay\Models\Invoice;
 use Responsiv\Pay\Models\PaymentMethod;
@@ -11,7 +12,7 @@ use Octommerce\Octommerce\Models\Order;
  */
 class Plugin extends PluginBase
 {
-    public $require = ['Octommerce.Octommerce'];
+    public $require = ['Octommerce.Octommerce', 'RainLab.User'];
 
     /**
      * Returns information about this plugin.
@@ -64,6 +65,12 @@ class Plugin extends PluginBase
                 'key'      => 'order_no',
                 'otherKey' => 'order_no'
             ];
+        });
+
+        User::extend(function($model) {
+            $model->addDynamicMethod('getWaitingOrders', function() use ($model) {
+                return $model->orders()->whereStatusCode('waiting')->get();
+            });
         });
     }
 
