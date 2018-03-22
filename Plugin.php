@@ -12,7 +12,7 @@ use Octommerce\Octommerce\Models\Order;
  */
 class Plugin extends PluginBase
 {
-    public $require = ['Octommerce.Octommerce', 'RainLab.User'];
+    public $require = ['Responsiv.Pay'];
 
     /**
      * Returns information about this plugin.
