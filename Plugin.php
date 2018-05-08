@@ -10,6 +10,8 @@ use Responsiv\Pay\Models\PaymentMethod;
  */
 class Plugin extends PluginBase
 {
+    public $require = ['Responsiv.Pay'];
+
     /**
      * Returns information about this plugin.
      *
