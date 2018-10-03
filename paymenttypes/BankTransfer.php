@@ -35,20 +35,21 @@ class BankTransfer extends GatewayBase
         return $host->payment_instructions;
     }
 
-    public function processPaymentForm($data, $host, $invoice) {
+    public function processPaymentForm($data, $invoice) {
         if ($invoice->unique_number) {
             return;
         }
 
         $invoice->unique_number = $this->generateUniqueNumber($invoice->total);
-
         $invoice->save();
 
-        $mailTemplate = MailTemplate::whereCode($host->mail_template_code)->first();
+        $payMethod = $invoice->getPaymentMethod();
+
+        $mailTemplate = MailTemplate::whereCode($payMethod->config_data['mail_template_code'])->first();
 
         if ($mailTemplate) {
 
-            Mail::send($mailTemplate->code, compact('invoice', 'host'), function($message) use ($invoice) {
+            Mail::send($mailTemplate->code, compact('invoice'), function($message) use ($invoice) {
                 $message->to($invoice->email, $invoice->name);
             });
         }
