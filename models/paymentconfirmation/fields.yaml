@@ -24,6 +24,10 @@ fields:
     destination_account:
         label: Destination Account
         disabled: true
+    payment_proof:
+        label: Payment Proof
+        type: fileupload
+        mode: image
     notes:
         label: Notes
         type: textarea
