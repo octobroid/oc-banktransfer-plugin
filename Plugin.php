@@ -45,6 +45,11 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
+        Invoice::extend(function($model) {
+            $model->addDynamicMethod('getTotalWithUniqueNumberAttribute', function() use ($model) {
+                return $model->total + $model->unique_number;
+            });
+        });
     }
 
     /**
