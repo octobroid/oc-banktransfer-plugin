@@ -42,7 +42,11 @@ class PaymentConfirmation extends Model
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
-    public $attachOne = [];
+    public $attachOne = [
+        'payment_proof' => [
+            'System\Models\file'
+        ]
+    ];
     public $attachMany = [];
 
 }

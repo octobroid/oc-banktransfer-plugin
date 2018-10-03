@@ -1,6 +1,7 @@
 <?php namespace Octobro\BankTransfer\Components;
 
 use Auth;
+use Input;
 use Flash;
 use Redirect;
 use Mail;
@@ -75,6 +76,14 @@ class PaymentConfirmation extends ComponentBase
                         $message->to($order->email, $order->name);
                         $message->subject('Konfirmasi Pembayaran anda [#'.$order->order_no.']');
                     });
+                }
+
+                if (Input::hasFile('payment_proof')) {
+                    $file = new \System\Models\File;
+                    $file->data = Input::file('payment_proof');
+                    $file->save();
+
+                    $confirm->payment_proof()->add($file);
                 }
 
                 Flash::success($this->property("successMessage"));
