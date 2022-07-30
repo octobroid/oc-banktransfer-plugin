@@ -44,7 +44,7 @@ class PaymentConfirmation extends Model
     public $morphMany = [];
     public $attachOne = [
         'payment_proof' => [
-            'System\Models\file'
+            'System\Models\File'
         ]
     ];
     public $attachMany = [];
